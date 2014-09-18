@@ -6,7 +6,8 @@ Term Class declarations
 #include <exception>
 #include <stdexcept>
 #include "Term.h"
-
+#include <iostream>
+using namespace std;
 // Default Constructor
 Term::Term()
 {}
@@ -59,4 +60,30 @@ const Term Term::operator+(const Term& L_term){
 		return Term((this->coefficient + L_term.coefficient), this->exponent);
 	}
 	else throw std::logic_error("Exponents of Terms must match.");
+}
+//////////////////////////////////////////////
+// An's update
+bool Term::operator<(const Term& L_term)
+{ return (this->exponent < L_term.exponent); } 
+
+bool Term::operator>(const Term& L_term)
+{ return (this->exponent > L_term.exponent); } 
+
+bool Term::operator==(const Term& L_term)
+{ return (this->exponent == L_term.exponent); } 
+// output function
+ostream& operator<<(ostream& output, const Term& aTerm)
+{
+	if (aTerm.get_exponent() != 0 )
+		output << aTerm.get_coefficient() << "x^" << aTerm.get_exponent();
+	else 
+		output << aTerm.get_coefficient();
+	return output;
+}
+// assignment operator
+const Term& Term::operator=(const Term& L_term)
+{
+	this->coefficient = L_term.coefficient;
+	this->exponent = L_term.exponent;
+	return *this;
 }
