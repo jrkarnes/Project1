@@ -3,7 +3,8 @@ Justin Karnes
 Term Class header file.
 */
 #pragma once
-
+using namespace std;
+#include <iostream>
 class Term{
 private:
 	int coefficient; // The coefficient of the term. Negative terms will have negative coefficients
@@ -21,7 +22,13 @@ public:
 	void set_coefficient(int); // Sets the coefficient of a Term
 	void set_exponent(int); // Sets the exponent of a term. This can accept a negative number
 	void set_negative_flag(bool); // Sets the negative exponent flag to the boolean value passed into this function
-
 	// Operator Definitions
 	const Term operator+(const Term& L_term); // Adds two terms together
+	//////////////////////////////////////////////
+	// An's update
+	bool Term::operator<(const Term& L_term);
+	bool Term::operator>(const Term& L_term); 
+	bool Term::operator==(const Term& L_term);
+	friend ostream& operator<<(ostream& output, const Term& aTerm);
+	const Term& Term::operator=(const Term& L_term);
 };
